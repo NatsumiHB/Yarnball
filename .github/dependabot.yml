@@ -1,8 +1,8 @@
 version: 2
 updates:
-- package-ecosystem: dotnet:nuget
+- package-ecosystem: dotnet
   directory: "/"
   schedule:
     interval: weekly
-    time: "04:00"
+    day: "saturday"
   open-pull-requests-limit: 10
