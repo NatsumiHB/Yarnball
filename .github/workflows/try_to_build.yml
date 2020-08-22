@@ -1,0 +1,14 @@
+name: Try to build
+on: [push]
+jobs:
+  build:
+    name: Try to build the project
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@main
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+      - run: dotnet build Yarnball
