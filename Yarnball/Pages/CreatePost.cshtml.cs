@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -40,6 +41,7 @@ namespace Yarnball.Pages
 
             _dbContext.Posts.Add(new Post
             {
+                CreatedAt = DateTime.Now,
                 UserId = user.Id,
                 User = user,
                 Title = Title,

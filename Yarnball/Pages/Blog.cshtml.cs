@@ -33,7 +33,10 @@ namespace Yarnball.Pages
             else
                 YarnballUser = await _userManager.FindByNameAsync(username).ConfigureAwait(false);
 
-            Posts = _applicationDbContext.Posts.Where(p => p.UserId == YarnballUser.Id).ToList();
+            Posts = _applicationDbContext.Posts
+                .Where(p => p.UserId == YarnballUser.Id)
+                .OrderBy(p => p.CreatedAt)
+                .ToList();
         }
     }
 }

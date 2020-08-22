@@ -5,5 +5,8 @@ namespace Yarnball.Data
 {
     public class YarnballRole : IdentityRole<Guid>
     {
+        public YarnballRole(string name) : base(name)
+        {
+        }
     }
 }

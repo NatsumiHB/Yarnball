@@ -1,0 +1,29 @@
+﻿@page
+@model Yarnball.Pages.UserInfoModel
+@{
+    ViewData["Title"] = "User information";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="border border-info">
+    <table class="table table-hover table-borderless" style="margin-bottom: 0;">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.SortedUsers)
+            {
+                <tr class="table-dark">
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@await Model.GetFirstRole(user)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

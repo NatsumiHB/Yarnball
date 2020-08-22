@@ -35,6 +35,11 @@
                                     <a class="dropdown-item" asp-page="/Blog">Your Blog</a>
                                     <a class="dropdown-item" asp-page="/CreatePost">New Post</a>
                                     <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Manage Account</a>
+                                    @if (User.IsInRole("Admin") || User.IsInRole("Owner"))
+                                    {
+                                        <a class="dropdown-item" asp-page="/UserInfo">User Information</a>
+
+                                    }
                                 </div>
                             </li>
                         }

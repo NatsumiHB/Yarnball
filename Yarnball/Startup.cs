@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using System.Threading.Tasks;
 using Yarnball.Data;
 
 namespace Yarnball
@@ -66,6 +67,19 @@ namespace Yarnball
             {
                 endpoints.MapRazorPages();
             });
+
+            CreateRoles(services).Wait();
+        }
+
+        private async Task CreateRoles(IServiceProvider services)
+        {
+            var roleManager = services.GetRequiredService<RoleManager<YarnballRole>>();
+
+            if (!await roleManager.RoleExistsAsync("Owner"))
+                await roleManager.CreateAsync(new YarnballRole("Owner"));
+
+            if (!await roleManager.RoleExistsAsync("Admin"))
+                await roleManager.CreateAsync(new YarnballRole("Admin"));
         }
     }
 }
