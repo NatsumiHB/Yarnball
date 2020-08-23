@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Yarnball.Data
@@ -16,5 +17,7 @@ namespace Yarnball.Data
 
         [Required]
         public string Content { get; set; }
+
+        public List<PostTag> PostTags { get; set; }
     }
 }

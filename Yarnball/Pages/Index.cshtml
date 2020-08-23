@@ -1,10 +1,17 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center" style="position: relative;">
+    <h1 class="display-4">Welcome to Yarnball</h1>
+    <p>The <a href="https://github.com/NatsumiHB/Yarnball" target="_blank">open source</a> social media platforms for all your needs.</p>
+    <br />
+    <form method="post" autocomplete="off">
+        <h4>Search for posts by tags</h4>
+        <div class="form-group">
+            <input asp-for="Query" class="form-control border" style="border-radius: 10px !important;" />
+        </div>
+    </form>
 </div>

@@ -1,26 +1,16 @@
 ﻿@page "{username?}"
 @model Yarnball.Pages.BlogModel
 @{
-    ViewData["Title"] = Model.YarnballUser.UserName ?? "User not found";
+    ViewData["Title"] = Model.YarnballUser != null ? Model.YarnballUser.UserName : "User not found";
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
 
 @if (Model.YarnballUser != null)
 {
-    @foreach (var post in Model.Posts)
+    <hr />
+    @foreach (var post in Model.YarnballUser.Posts.OrderByDescending(p => p.CreatedAt))
     {
-        <div class="row justify-content-center">
-            <div class="card text-white bg-dark border-info mb-3 col-5" style="padding-left: 0; padding-right: 0;">
-                <div class="card-header">@Model.YarnballUser.UserName</div>
-                <div class="card-body">
-                    <h4 class="card-title">@post.Title</h4>
-                    <p class="card-text">@post.Content</p>
-                </div>
-                <div class="card-footer">
-                    <p>Created at @post.CreatedAt</p>
-                </div>
-            </div>
-        </div>
+        <vc:post-component post="@post" width="6"></vc:post-component>
     }
 }

@@ -1,0 +1,21 @@
+﻿@page "{query}"
+@model Yarnball.Pages.SearchModel
+@{
+    ViewData["Title"] = Model.Query;
+}
+
+<h1 class="text-center">You searched for "@Model.Query"</h1>
+
+@if (Model.Posts.Count == 0)
+{
+    <hr />
+    <h4 class="text-center">Your query did not return any results!</h4>
+}
+else
+{
+    <hr />
+    @foreach (var post in Model.Posts)
+    {
+        <vc:post-component post="@post" width="6"></vc:post-component>
+    }
+}
