@@ -10,8 +10,8 @@ using Yarnball.Data;
 namespace Yarnball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200823161820_idk")]
-    partial class idk
+    [Migration("20200824200118_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

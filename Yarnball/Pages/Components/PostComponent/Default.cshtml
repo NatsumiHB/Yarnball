@@ -10,7 +10,7 @@
             </div>
             <div class="card-footer">
                 <p>Created at @Model.Post.CreatedAt</p>
-                <p class="text-muted">@string.Join(", ", Model.Post.PostTags.Select(pt => pt.Tag.Name))</p>
+                <p class="text-muted">@string.Join(", ", Model.Post.PostTags.Select(pt => pt.Tag.Name).OrderBy(tag => tag))</p>
             </div>
         </div>
     </div>
