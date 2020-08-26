@@ -30,19 +30,19 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello @User.Identity.Name</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" asp-page="/Blog">Your Blog</a>
-                                    <a class="dropdown-item" asp-page="/CreatePost">New Post</a>
-                                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Manage Account</a>
-                                    @if (User.IsInRole("Admin") || User.IsInRole("Owner"))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello @User.Identity.Name</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-page="/Blog">Your Blog</a>
+                                <a class="dropdown-item" asp-page="/CreatePost">New Post</a>
+                                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Manage Account</a>
+                                @if (User.IsInRole("Admin") || User.IsInRole("Owner"))
                                     {
-                                        <a class="dropdown-item" asp-page="/UserInfo">User Information</a>
+                                <a class="dropdown-item" asp-page="/UserInfo">User Information</a>
 
                                     }
-                                </div>
-                            </li>
+                            </div>
+                        </li>
                         }
                     </ul>
                 </div>

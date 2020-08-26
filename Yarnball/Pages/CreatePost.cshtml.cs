@@ -46,7 +46,7 @@ namespace Yarnball.Pages
             if (!ModelState.IsValid)
                 return Page();
 
-            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
+            var user = await _userManager.GetUserAsync(User);
 
             var tags = Tags.Split(",", StringSplitOptions.RemoveEmptyEntries);
             var oldTags = new List<Tag>();
@@ -54,7 +54,7 @@ namespace Yarnball.Pages
             foreach (var tag in tags)
             {
                 // Ensure that tag is in DB
-                if (!await _dbContext.Tags.AnyAsync(t => t.Name == tag).ConfigureAwait(false))
+                if (!await _dbContext.Tags.AnyAsync(t => t.Name == tag))
                 {
                     newTags.Add(new Tag
                     {
@@ -68,8 +68,8 @@ namespace Yarnball.Pages
                 }
             }
             // Save tags
-            await _dbContext.Tags.AddRangeAsync(newTags).ConfigureAwait(false);
-            await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+            await _dbContext.Tags.AddRangeAsync(newTags);
+            await _dbContext.SaveChangesAsync();
 
             // Create post and add tags
             var post = new Post
@@ -91,10 +91,10 @@ namespace Yarnball.Pages
             }
 
             // Add tag to user and all posts, save
-            await _dbContext.Entry(user).Collection(u => u.Posts).LoadAsync().ConfigureAwait(false);
+            await _dbContext.Entry(user).Collection(u => u.Posts).LoadAsync();
             user.Posts.Add(post);
             _dbContext.Posts.Add(post);
-            await _dbContext.SaveChangesAsync().ConfigureAwait(false);
+            await _dbContext.SaveChangesAsync();
 
             return RedirectToPage("Blog");
         }

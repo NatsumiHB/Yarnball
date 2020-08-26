@@ -34,11 +34,11 @@ namespace Yarnball.Pages
 
             foreach (var post in Posts)
             {
-                await _dbContext.Entry(post).Reference(p => p.User).LoadAsync().ConfigureAwait(false);
-                await _dbContext.Entry(post).Collection(p => p.PostTags).LoadAsync().ConfigureAwait(false);
+                await _dbContext.Entry(post).Reference(p => p.User).LoadAsync();
+                await _dbContext.Entry(post).Collection(p => p.PostTags).LoadAsync();
 
                 foreach (var pt in post.PostTags)
-                    await _dbContext.Entry(pt).Reference(pt => pt.Tag).LoadAsync().ConfigureAwait(false);
+                    await _dbContext.Entry(pt).Reference(pt => pt.Tag).LoadAsync();
             }
 
             return Page();

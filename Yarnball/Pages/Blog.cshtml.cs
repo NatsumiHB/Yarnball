@@ -29,19 +29,21 @@ namespace Yarnball.Pages
                     return RedirectToPage("/Account/Login", new { area = "Identity", ReturnUrl = "/Blog" });
             }
             else
-                YarnballUser = await _userManager.FindByNameAsync(username).ConfigureAwait(false);
+            {
+                YarnballUser = await _userManager.FindByNameAsync(username);
+            }
 
             if (YarnballUser != null)
             {
                 // Load posts
-                await _dbContext.Entry(YarnballUser).Collection(u => u.Posts).LoadAsync().ConfigureAwait(false);
+                await _dbContext.Entry(YarnballUser).Collection(u => u.Posts).LoadAsync();
 
                 foreach (var post in YarnballUser.Posts)
                 {
-                    await _dbContext.Entry(post).Collection(p => p.PostTags).LoadAsync().ConfigureAwait(false);
+                    await _dbContext.Entry(post).Collection(p => p.PostTags).LoadAsync();
 
                     foreach (var pt in post.PostTags)
-                        await _dbContext.Entry(pt).Reference(pt => pt.Tag).LoadAsync().ConfigureAwait(false);
+                        await _dbContext.Entry(pt).Reference(pt => pt.Tag).LoadAsync();
                 }
             }
 
