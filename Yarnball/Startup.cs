@@ -68,18 +68,18 @@ namespace Yarnball
                 endpoints.MapRazorPages();
             });
 
-            CreateRoles(services).Wait();
+            CreateRoles(services).GetAwaiter().GetResult();
         }
 
         private async Task CreateRoles(IServiceProvider services)
         {
             var roleManager = services.GetRequiredService<RoleManager<YarnballRole>>();
 
-            if (!await roleManager.RoleExistsAsync("Owner"))
-                await roleManager.CreateAsync(new YarnballRole("Owner"));
+            if (!await roleManager.RoleExistsAsync("Owner").ConfigureAwait(false))
+                await roleManager.CreateAsync(new YarnballRole("Owner")).ConfigureAwait(false);
 
-            if (!await roleManager.RoleExistsAsync("Admin"))
-                await roleManager.CreateAsync(new YarnballRole("Admin"));
+            if (!await roleManager.RoleExistsAsync("Admin").ConfigureAwait(false))
+                await roleManager.CreateAsync(new YarnballRole("Admin")).ConfigureAwait(false);
         }
     }
 }
