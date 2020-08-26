@@ -46,7 +46,7 @@ namespace Yarnball.Pages
             if (!ModelState.IsValid)
                 return Page();
 
-            var user = await _userManager.GetUserAsync(User);
+            var user = await _userManager.GetUserAsync(User).ConfigureAwait(false);
 
             var tags = Tags.Split(",", StringSplitOptions.RemoveEmptyEntries);
             var oldTags = new List<Tag>();
@@ -54,7 +54,7 @@ namespace Yarnball.Pages
             foreach (var tag in tags)
             {
                 // Ensure that tag is in DB
-                if (!await _dbContext.Tags.AnyAsync(t => t.Name == tag))
+                if (!await _dbContext.Tags.AnyAsync(t => t.Name == tag).ConfigureAwait(false))
                 {
                     newTags.Add(new Tag
                     {
@@ -63,7 +63,9 @@ namespace Yarnball.Pages
                     });
                 }
                 else
+                {
                     oldTags.Add(_dbContext.Tags.First(t => t.Name == tag));
+                }
             }
             // Save tags
             await _dbContext.Tags.AddRangeAsync(newTags).ConfigureAwait(false);
@@ -92,7 +94,7 @@ namespace Yarnball.Pages
             await _dbContext.Entry(user).Collection(u => u.Posts).LoadAsync().ConfigureAwait(false);
             user.Posts.Add(post);
             _dbContext.Posts.Add(post);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync().ConfigureAwait(false);
 
             return RedirectToPage("Blog");
         }
