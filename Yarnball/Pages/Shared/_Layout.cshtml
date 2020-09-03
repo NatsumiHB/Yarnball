@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/superhero/bootstrap.min.css" />
+    <link rel="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <base href="~/" />
 </head>
@@ -30,19 +31,19 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello @User.Identity.Name</a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-page="/Blog">Your Blog</a>
-                                <a class="dropdown-item" asp-page="/CreatePost">New Post</a>
-                                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Manage Account</a>
-                                @if (User.IsInRole("Admin") || User.IsInRole("Owner"))
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Hello @User.Identity.Name</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" asp-page="/Blog">Your Blog</a>
+                                    <a class="dropdown-item" asp-page="/CreatePost">New Post</a>
+                                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Manage Account</a>
+                                    @if (User.IsInRole("Admin") || User.IsInRole("Owner"))
                                     {
-                                <a class="dropdown-item" asp-page="/UserInfo">User Information</a>
+                                        <a class="dropdown-item" asp-page="/UserInfo">User Information</a>
 
                                     }
-                            </div>
-                        </li>
+                                </div>
+                            </li>
                         }
                     </ul>
                 </div>
@@ -62,6 +63,7 @@
     </footer>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/main.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

@@ -8,9 +8,9 @@
 
 @if (Model.YarnballUser != null)
 {
-<hr />
-@foreach (var post in Model.YarnballUser.Posts.OrderByDescending(p => p.CreatedAt))
+    <hr />
+    @foreach (var post in Model.YarnballUser.Posts.OrderByDescending(p => p.CreatedAt))
     {
-<vc:post-component post="@post" width="6"></vc:post-component>
+        <vc:post-component post="@post" width="6"></vc:post-component>
     }
 }

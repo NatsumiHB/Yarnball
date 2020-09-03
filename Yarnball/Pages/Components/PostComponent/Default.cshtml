@@ -1,17 +1,18 @@
 ﻿@model Yarnball.Pages.Components.PostComponent.PostComponentModel
 
-<a asp-page="/Post" asp-route-id="@Model.Post.Id" style="text-decoration: none !important;">
-    <div class="row justify-content-center">
-        <div class="card text-white bg-dark border-info mb-3 col-@Model.Width" style="padding-left: 0; padding-right: 0;">
-            <div class="card-header">@Model.Post.User.UserName</div>
-            <div class="card-body">
-                <h4 class="card-title">@Model.Post.Title</h4>
-                <p class="card-text">@Model.Post.Content</p>
-            </div>
-            <div class="card-footer">
+<div class="row justify-content-center" id="@Model.Post.Id">
+    <input id="post-id" value="https://localhost:5002/@Model.Post.User.UserName#@Model.Post.Id" hidden />
+    <div class="card text-white bg-dark border-info mb-3 col-@Model.Width" style="padding-left: 0; padding-right: 0;">
+        <div class="card-header">@Model.Post.User.UserName</div>
+        <div class="card-body">
+            <h4 class="card-title">@Model.Post.Title</h4>
+            <p class="card-text">@Model.Post.Content</p>
+        </div>
+        <div class="card-footer">
+            <div class="col-@(Model.Width - 1)">
                 <p>Created at @Model.Post.CreatedAt</p>
                 <p class="text-muted">@string.Join(", ", Model.Post.PostTags.Select(pt => pt.Tag.Name).OrderBy(tag => tag))</p>
             </div>
         </div>
     </div>
-</a>
+</div>
